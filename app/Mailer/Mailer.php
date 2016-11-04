@@ -42,7 +42,7 @@ class Mailer
 
         $context = stream_context_create($options);
 
-        return file_get_contents($this->url, FILE_TEXT, $context);
+        return file_get_contents($this->url, false, $context);
 
     }
 

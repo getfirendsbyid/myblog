@@ -64,7 +64,7 @@ class PassportController extends Controller
 
         User::register($data);
 
-//        return redirect('/success');
+        return redirect('/success');
 
 
     }

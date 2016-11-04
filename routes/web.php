@@ -13,7 +13,8 @@
 
 Route::get('/', function () {
 
-    return view('web/welcome');
+    //return view('web/welcome');
+    phpinfo();
 
 });
 
@@ -31,13 +32,13 @@ Route::get('/success',function (){
 
 });
 
-Route::get('/login','passportController@login');
+Route::get('/login','PassportController@login');
 
-Route::get('/regist','passportController@regist');
+Route::get('/regist','PassportController@regist');
 
-Route::post('/doregist','passportController@store');
+Route::post('/doregist','PassportController@store');
 
-Route::get('/article','articleController@index');
+Route::get('/article','ArticleController@index');
 
 Route::resource('/favorite','FavoritesController');
 

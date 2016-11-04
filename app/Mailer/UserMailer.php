@@ -14,9 +14,9 @@ class UserMailer extends Mailer
 
     public function  welcome($user){
 
-        $subject = '一栖社区 邮箱确认';
+        $subject = '欢迎来到一栖社区';
 
-        $view = 'email.welcome';
+        $view = 'welcome';
 
         $data = ['%name%' => [$user->name],'%token%' => [str_random(40)]];
 
