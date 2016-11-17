@@ -3,57 +3,65 @@
 
 @section('content')
 
-    <style>
-        .navbar {
-            position: relative;
-            min-height: 50px;
-            margin-bottom: 0px;
-            border: 1px solid transparent;
-        }
-
-        #form {
-            position: relative;
-            width: 400px;
-            text-align: center;
-            margin: 0 auto 0;
-        }
-    </style>
 
     <div class="jumbotron">
 
         <div class="container" >
+
             <div id="form">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
-                    <div class="col-sm-12">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+
+
+                @if($errors->any())
+                    <ul class="list-group">
+
+                        @foreach($errors->all() as $error)
+
+                            <li class="list-group-item list-group-item-danger">{{$error}}</li>
+
+                        @endforeach
+
+                    </ul>
+                @endif
+
+                @if(Session::has('user_login_failed'))
+                        <ul class="list-group">
+
+                                <li class="list-group-item list-group-item-danger">{{Session::get('user_login_failed')}}</li>
+
+                    @endif
+
+
+                <form   class="form-horizontal col-xs-12  col-md-12"  action="/login" method="post" role="form">
+
+                    {{ csrf_field() }}
+
+                    <div class="form-group">
+
+                        <label for="inputEmail3" >邮箱</label>
+
+                        <input type="email" name="email"  class="form-control " id="inputEmail3" placeholder="邮箱">
+
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-                    <div class="col-sm-12">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+
+                    <div class="form-group">
+
+                        <label for="inputPassword3"  >密码</label>
+                        <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="密码">
+
                     </div>
-                </div>
 
-                <div class="form-group">
-
-                    <div class="col-sm-12">
-                    <input   class="col-sm-1"  name="remember" type="checkbox" value="1">
-                        <label for="remember" class=" col-sm-11" >两周内免登录</label>
-                     </div>
-
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <button type="submit" class="form-control btn btn-default">登录</button>
+                    <div class="form-group">
+                        <div class="">
+                            <button type="submit" class="form-control btn btn-default">登录</button>
+                        </div>
                     </div>
-                </div>
 
-            </form>
+                </form>
+
+
+                <div style="clear: both"></div>
             </div>
         </div>
+    </div>
     </div>
 @stop

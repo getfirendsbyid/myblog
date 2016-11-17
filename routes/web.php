@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Redis;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,32 +12,26 @@
 |
 */
 
-Route::get('/', function () {
 
-    //return view('web/welcome');
-    phpinfo();
+Route::get('/', 'ArticleController@index');// 首页
 
-});
+Route::resource('/article', 'ArticleController');// 首页
 
+Route::get('/admin',function (){
 
-//Route::get('/email',function (){
-//
-//    Illuminate\Contracts\Mail\::to('1094692718@qq.com')->send(new App\Mail\);
-//
-//});
-
-
-Route::get('/success',function (){
-
-    return 'regist success';
+    return view('admin.login');
 
 });
 
-Route::get('/login','PassportController@login');
 
-Route::get('/regist','PassportController@regist');
 
-Route::post('/doregist','PassportController@store');
+Route::get('/user/login','UsersController@login');
+
+Route::post('/login','UsersController@signin');
+
+Route::get('/regist','UsersController@regist');
+
+Route::post('/regist','UsersController@store');
 
 Route::get('/article','ArticleController@index');
 

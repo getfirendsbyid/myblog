@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Articles;
+use App\Discussion;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,10 +16,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        
-        $article = Articles::all();
+        $article = Articles::limit(8)->get();
 
-        return view('article/index',compact('article'));
+        return view('web/welcome',compact('article'));
 
     }
 
@@ -41,7 +41,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -52,7 +52,11 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $article = Articles::findOrFail($id);
+
+        return view('web/article/detail',compact('article'));
+        
     }
 
     /**

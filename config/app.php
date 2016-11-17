@@ -177,6 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,  //sentry 异常捕捉服务
 
     ],
 
@@ -225,6 +226,14 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+
+
+        /**
+         * 自己的别名服务
+         */
+
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,//senty 异常服务
 
     ],
 

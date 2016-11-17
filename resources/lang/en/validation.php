@@ -96,9 +96,26 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'name' => [
+            'required' => '用户名不能为空',
+            'min:4'=>'用户名长度不能低于4个字符',
+            'max:8'=>'用户名长度不能高于8个字符'
         ],
+        'email' => [
+            'required' => '邮箱不能为空',
+            'email' => '邮箱格式不正确',
+            'unique:users,email'=> '邮箱已经被注册'
+        ],
+        'password' => [
+            'required' => '密码不能为空',
+            'confirmed'=>'两次密码不一致',
+            'min:6'=>'密码长度最小不能低于6位'
+        ],
+        'password_confirmation'=>[
+            'required' => '重复密码不能为空',
+
+        ]
+
     ],
 
     /*

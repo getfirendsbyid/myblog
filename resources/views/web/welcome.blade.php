@@ -1,20 +1,66 @@
 @extends('blade/home')
 
 @section('content')
+    <div class="jumbotron">
+        <div class="container">
 
-    <div class="row-fluid">
+            <h2>欢迎你的到来</h2>
 
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img data-src="http://pic33.nipic.com/20130916/3420027_192919547000_2.jpg" alt="...">
-                <div class="caption">
-                    <h3>Thumbnail label</h3>
-                    <p>...</p>
-                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                </div>
-            </div>
+            <p style="margin-bottom: 30px"><a class="btn btn-primary btn-lg pull-right" href="#" role="button">Learn more</a></p>
+
+            <p>小站记录思想,感悟生活</p>
+
         </div>
-
     </div>
 
+    <div class="container">
+
+     <div class="row-fluid">
+
+         <div class="col-md-8">
+
+     @foreach($article as $article )
+
+        <div class="col-sm-4 col-md-3">
+
+            <div class="thumbnail" >
+
+              <a href="/article/{{$article->id}}">  <img src="{{$article->article_img_url}}" alt="..."></a>
+
+                <div class="caption">
+
+                    <p>{{$article->title}}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        @endforeach
+         </div>
+
+         <div class="col-md-4">
+
+             <div class="col-sm-4 col-md-12">
+
+             <div class="thumbnail" >
+
+                 <a href="/article/{{$article->id}}">  <img src="{{$article->article_img_url}}" alt="..."></a>
+
+                 <div class="caption">
+
+                     <h3>{{$article->title}}</h3>
+
+                 </div>
+
+             </div>
+             </div>
+         </div>
+
+      </div>
+
+    <div>
+    </div>
+    </div>
 @stop

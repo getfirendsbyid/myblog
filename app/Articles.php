@@ -2,10 +2,11 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Articles extends Authenticatable
+class Articles extends Model
 {
     use Notifiable;
 
@@ -16,7 +17,7 @@ class Articles extends Authenticatable
      */
     protected $fillable = [
 
-        'title', 'content', 'published_at','intro'
+        'title', 'content', 'published_at','intro','created_at','updated_at'
 
     ];
 
@@ -26,6 +27,8 @@ class Articles extends Authenticatable
      * @var array
      */
     protected $hidden = [
+
         'title', 'content',
+
     ];
 }

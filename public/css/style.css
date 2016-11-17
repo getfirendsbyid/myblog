@@ -1,0 +1,13 @@
+
+#form {
+    position: relative;
+    margin: 40px auto 0;
+    border:1px solid #ddd;
+    width:350px;
+    padding: 20px;   /*填充*/
+    background-color: white;
+    border-radius: 5px;
+}
+.list-group-item{
+    border: none;
+}

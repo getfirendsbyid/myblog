@@ -17,17 +17,57 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'avatar' =>$faker->imageUrl(256,256),
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
 
 
-$factory->define(App\Articles::class, function ($faker) {
+$factory->define(App\Articles::class, function (Faker\Generator $faker) {
+
+
     return [
-        'title' => $faker->sentence(mt_rand(3, 10)),
-        'content' => join("\n\n", $faker->paragraphs(mt_rand(3, 6))),
-        'published_at' => $faker->dateTimeBetween('-1 month', '+3 days'),
-        'intro' => $faker->sentence(mt_rand(3, 10)),
+        'title' => $faker->title,
+        'content' => $faker->text(),
+        'article_img_url' => $faker->imageUrl(256,256),
+        'published_at' => $faker->dateTime,
+        'intro' => $faker->country,
+        'created_at'=>$faker->dateTime,
+        'updated_at'=>$faker->dateTime,
     ];
+
+
 });
+
+
+
+$factory->define(App\post::class, function (Faker\Generator $faker) {
+
+    $userid = DB::table('users')->pluck('id')->toArray();
+
+    return [
+        'title' => $faker->sentence,
+        'user_id'=> $faker->randomElements($userid),
+        'body' => $faker->paragraphs,
+    ];
+
+});
+
+
+
+$factory->define(App\Discussion::class, function (Faker\Generator $faker) {
+
+    $userid = DB::table('users')->pluck('id')->toArray();
+
+    return [
+        'title' => $faker->title,
+        'body' =>  $faker->paragraphs,
+        'user_id' => $faker->randomElement($userid),
+        'last_user_id' => $faker->randomElement($userid),
+    ];
+
+
+
+});
+
