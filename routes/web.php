@@ -12,20 +12,23 @@ use Illuminate\Support\Facades\Redis;
 |
 */
 
-
 Route::get('/', 'ArticleController@index');// 首页
 
 Route::resource('/article', 'ArticleController');// 首页
 
-Route::get('/admin',function (){
+Route::get('/discussion','DiscussionController@index'); //论坛首页
 
-    return view('admin.login');
+Route::get('/quite','UsersController@quite'); //论坛
 
-});
+Route::get('/discussion/create','DiscussionController@create');  //发表帖子
+
+Route::get('/passport/token/{token}','UsersController@token');  //发表帖子
 
 
 
-Route::get('/user/login','UsersController@login');
+
+
+Route::get('/login','UsersController@login');
 
 Route::post('/login','UsersController@signin');
 
@@ -35,6 +38,7 @@ Route::post('/regist','UsersController@store');
 
 Route::get('/article','ArticleController@index');
 
-Route::resource('/favorite','FavoritesController');
 
+//Auth::routes();
 
+Route::get('/home', 'HomeController@index');

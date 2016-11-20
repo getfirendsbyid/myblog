@@ -73,13 +73,36 @@
             </form>
             {{--搜索组件--}}
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav">
 
-                <li><a href="/login">登录</a></li>
-                <li class="active"><a href="/regist">注册</a></li>
+                <li><a href="/discussion">讨论</a></li>
 
             </ul>
 
+            <ul class="nav navbar-nav navbar-right">
+                @if(Auth::check())
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu" role="menu">
+
+                            <li><a href="/user/center">个人中心</a></li>
+
+                            <li class="divider"></li>
+                            <li><a href="/quite">退出</a></li>
+                        </ul>
+
+                    </li>
+                    <a class="navbar-brand" href="#">
+                        <img alt="Brand" height="32" src="{{Auth::user()->avatar}}" class="img-circle">
+                    </a>
+
+                   @else
+                <li><a href="/login">登录</a></li>
+                <li class="active"><a href="/regist">注册</a></li>
+                 @endif
+            </ul>
         </div>
     </div>
 </nav>

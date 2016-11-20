@@ -18,6 +18,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'avatar' =>$faker->imageUrl(256,256),
+        'confirm_code'=>str_random(48),
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
@@ -61,8 +62,8 @@ $factory->define(App\Discussion::class, function (Faker\Generator $faker) {
     $userid = DB::table('users')->pluck('id')->toArray();
 
     return [
-        'title' => $faker->title,
-        'body' =>  $faker->paragraphs,
+        'title' => $faker->titleFemale,
+        'body' =>  $faker->text,
         'user_id' => $faker->randomElement($userid),
         'last_user_id' => $faker->randomElement($userid),
     ];

@@ -2,27 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Discussion;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class PassportController extends Controller
+class DiscussionController extends Controller
 {
-
-    public function login()
-    {
-
-        return view('web/login');
-
-    }
-
-    public function regist()
-    {
-
-        return view('web/regist');
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +16,11 @@ class PassportController extends Controller
      */
     public function index()
     {
-        //
+
+        $discussion = Discussion::limit(10)->get();
+
+        return view('web.discussion.index',compact('discussion'));
+
     }
 
     /**
@@ -40,7 +30,9 @@ class PassportController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('web.discussion.create');
+
     }
 
     /**
@@ -49,26 +41,10 @@ class PassportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\PassportRequest $request)
+    public function store(Request $request)
     {
-
-        $data = [
-
-            'name'=>$request->get('name'),
-
-            'email'=>$request->get('email'),
-
-            'password'=>bcrypt('password')
-
-        ];
-
-        User::register($data);
-
-        return redirect('/success');
-
+        //
     }
-
-
 
     /**
      * Display the specified resource.

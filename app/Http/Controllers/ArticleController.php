@@ -6,6 +6,7 @@ use App\Discussion;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -16,6 +17,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
+
         $article = Articles::limit(8)->get();
 
         return view('web/welcome',compact('article'));

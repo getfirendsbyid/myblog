@@ -39,7 +39,7 @@
 
                         <label for="inputEmail3" >邮箱</label>
 
-                        <input type="email" name="email"  class="form-control " id="inputEmail3" placeholder="邮箱">
+                         <input type="email" name="email" value="{{ old('email')}}" class="form-control " id="inputEmail3" placeholder="邮箱">
 
                     </div>
 
@@ -61,6 +61,7 @@
 
                 <div style="clear: both"></div>
             </div>
+
         </div>
     </div>
     </div>

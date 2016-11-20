@@ -178,7 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,  //sentry 异常捕捉服务
-
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,  //phpstom 智能ide提示
     ],
 
     /*

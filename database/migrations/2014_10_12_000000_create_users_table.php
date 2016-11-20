@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('avatar');
-            $table->integer('is_confirmed');
+            $table->string('confirm_code',64);
+            $table->integer('is_confirmed')->default(0); //0 表示没有激活,1表示激活
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();

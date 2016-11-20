@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Session;
 class UsersController extends Controller
 {
 
+    public function quite()
+    {
+        Auth::logout();
+
+        return redirect('/');
+    }
+    
     public function login()
     {
 
@@ -23,6 +30,25 @@ class UsersController extends Controller
     {
 
         return view('web/regist');
+
+    }
+
+    public function  token($confirm_code)
+    {
+
+        $user = User::where('confirm_code',$confirm_code)->first();
+
+        if (is_null($user))
+        {
+            redirect('/login');
+        }else{
+
+            $data = ['is_confired'=>1];
+
+            $save = User::where('confirm_code',$confirm_code)->save($data);
+
+            return redirect('/');
+        }
 
     }
 
@@ -46,7 +72,7 @@ class UsersController extends Controller
 
         Session::flash('user_login_failed','密码不正确或邮箱不正确');
 
-        return  redirect('/user/login')->withInput();
+        return  redirect('/login')->withInput(['email'=>$request->get('email')]);
 
     }
 
@@ -82,7 +108,17 @@ class UsersController extends Controller
     public function store(Requests\UserRegisterRequest $request)
     {
 
-        User::create(array_merge($request->all(), ['avatar'=>'/images/face.jpg','is_confirmed'=>1]));
+        $userdata = [
+
+            'avatar'=>'/images/face.jpg',
+
+            'confirm_code'=> str_random(34)
+
+        ];
+
+        $data = array_merge($request->all(),$userdata);
+
+        User::register($data);
 
         return redirect('/');
 
