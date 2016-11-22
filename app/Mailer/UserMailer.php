@@ -18,7 +18,7 @@ class UserMailer extends Mailer
 
         $view = 'welcome';
 
-        $data = ['%name%' => [$user->name],'%token%' => [str_random(40)]];
+        $data = ['%name%' => [$user->name],'%token%' => [$user->confirm_code]];
 
         $this->sendTo($user, $subject, $view, $data);
 

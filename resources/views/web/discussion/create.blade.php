@@ -2,20 +2,10 @@
 
 @section('content')
 
-    <div class="jumbotron">
-        <div class="container">
 
-            <h2>欢迎你的到来</h2>
 
-            <p style="margin-bottom: 30px"><a class="btn btn-primary btn-lg pull-right" href="#" role="button">Learn more</a></p>
-
-            <p>小站记录思想,感悟生活</p>
-
-        </div>
-    </div>
-
- <div class="container">
-      <form method="post" action="/">
+ <div class="containers header-container">
+      <form method="post" action="/discussion/create">
          <div class="col-md-10 col-sm-12 col-md-offset-1">
              <div class="form-group">
                  <label for="inputEmail3">标题</label>
@@ -32,6 +22,7 @@
              </div>
 
          </div>
+
       </form>
  </div>
 

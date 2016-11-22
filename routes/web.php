@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Redis;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,11 +21,13 @@ Route::get('/quite','UsersController@quite'); //论坛
 
 Route::get('/discussion/create','DiscussionController@create');  //发表帖子
 
-Route::get('/passport/token/{token}','UsersController@token');  //发表帖子
+Route::get('/user/token/{token}','UsersController@token');  //发表帖子
 
+Route::get('/check_your_email','UsersController@check_your_email');  //查看邮箱是提示页面
 
+Route::get('/email_success','UsersController@email_success');  //查看邮箱是提示页面
 
-
+Route::get('/discussion/create','DiscussionController@create');  //查看邮箱是提示页面
 
 Route::get('/login','UsersController@login');
 

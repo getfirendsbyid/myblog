@@ -12,13 +12,49 @@ use Illuminate\Support\Facades\Session;
 class UsersController extends Controller
 {
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * 邮箱验证成功
+     *
+     */
+   public  function email_success()
+   {
+
+       return view('/email.email_success');
+   }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * 提醒用户邮箱验证页面
+     */
+
+    public function  check_your_email()
+    {
+
+        return view('email.check_your_email');
+
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * 登录退出
+     */
     public function quite()
     {
+
         Auth::logout();
 
         return redirect('/');
+
     }
-    
+
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 登录页面
+     */
     public function login()
     {
 
@@ -26,6 +62,11 @@ class UsersController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     *  注册页面
+     */
     public function regist()
     {
 
@@ -33,6 +74,10 @@ class UsersController extends Controller
 
     }
 
+    /**
+     * @param $confirm_code
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function  token($confirm_code)
     {
 
@@ -40,23 +85,39 @@ class UsersController extends Controller
 
         if (is_null($user))
         {
-            redirect('/login');
+
+            Session::flash('user_regist_failed','邮箱验证失败');
+
+            return redirect('/regist');
+
         }else{
 
-            $data = ['is_confired'=>1];
+            $data = ['is_confirmed' => 1];
 
-            $save = User::where('confirm_code',$confirm_code)->save($data);
+            $updateres = User::where('confirm_code',$confirm_code)->update($data);
 
-            return redirect('/');
+            if ($updateres)
+
+            {
+
+                return redirect('/email_success');
+
+            }
+
         }
 
     }
 
-
+    /**
+     * @param Requests\UserLoginRequest $request  注入验证
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
+     *  登录服务
+     */
     public function signin(Requests\UserLoginRequest $request)
     {
 
-    if (Auth::attempt([
+    if (\Auth::attempt([
 
         'email'=>$request->get('email'),
 
@@ -104,15 +165,19 @@ class UsersController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * 注册服务
      */
     public function store(Requests\UserRegisterRequest $request)
     {
+
+        $confirm_code = str_random(34);
 
         $userdata = [
 
             'avatar'=>'/images/face.jpg',
 
-            'confirm_code'=> str_random(34)
+            'confirm_code'=>$confirm_code,
 
         ];
 
@@ -120,7 +185,7 @@ class UsersController extends Controller
 
         User::register($data);
 
-        return redirect('/');
+        return redirect('/check_your_email');
 
     }
 

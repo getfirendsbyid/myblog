@@ -1,7 +1,8 @@
 @extends('blade/home')
 
 @section('content')
-    <div class="jumbotron">
+
+    <div class="jumbotron header-container">
         <div class="container">
 
             <h2>欢迎你的到来</h2>

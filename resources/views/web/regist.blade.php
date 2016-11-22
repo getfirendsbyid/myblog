@@ -24,7 +24,12 @@
                         </ul>
                     @endif
 
+                        @if(Session::has('user_login_failed'))
+                            <ul class="list-group">
 
+                                <li class="list-group-item list-group-item-danger">{{Session::get('user_regist_failed')}}</li>
+
+                                @endif
 
 
 

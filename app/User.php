@@ -66,7 +66,6 @@ class User extends Authenticatable
 
         $this->attributes['password']  =  Hash::make($password);
 
-
     }
 
 
@@ -81,6 +80,8 @@ class User extends Authenticatable
 
     public static function register(array  $attributes) //特性
     {
+
+
         $user = static::create($attributes);
 
         event(new UserRegistered($user));
