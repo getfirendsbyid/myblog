@@ -114,7 +114,14 @@ return [
         'password_confirmation'=>[
             'required' => '重复密码不能为空',
 
+        ],
+        'body'=>[
+            'required' => '内容不能为空',
+        ],
+        'title'=>[
+            'required' => '文章标题不能呢个为空'
         ]
+
 
     ],
 

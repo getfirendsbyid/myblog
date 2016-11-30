@@ -4,11 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Discussion;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 use App\Http\Requests;
 
 class DiscussionController extends Controller
 {
+
+
+    function __construct()
+    {
+
+        $this->middleware('auth',['only'=>['create','store','edit','update']]); //必须登录之后才能访问这些方法,否者跳回user/login
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +27,7 @@ class DiscussionController extends Controller
     public function index()
     {
 
-        $discussion = Discussion::limit(10)->get();
+        $discussion = Discussion::paginate(8);
 
         return view('web.discussion.index',compact('discussion'));
 
@@ -41,9 +51,15 @@ class DiscussionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CreateDiscussionRequest $request)
     {
-        //
+
+        $discussiondata = array_merge($request->all(),['user_id'=>\Auth::id(),'last_user_id'=>\Auth::id()]);
+
+        $res = Discussion::creatediscussion($discussiondata);
+
+        return redirect()->action('DiscussionController@show',['id'=>$res->id]);
+
     }
 
     /**
@@ -54,7 +70,14 @@ class DiscussionController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $discussion = Discussion::findOrFail($id);
+
+//        $this->authorize('show-post',$discussion);
+
+
+        return view('web.discussion.show',compact('discussion'));
+
     }
 
     /**

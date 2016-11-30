@@ -10,7 +10,10 @@
         "doctrine/dbal": "^2.5",
         "sentry/sentry-laravel": "^0.4.1",
         "predis/predis": "^1.1",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "intervention/image": "^2.3",
+        "yuanchao/laravel-5-markdown-editor": "dev-master"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -19,6 +22,7 @@
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
         "barryvdh/laravel-ide-helper": "^2.2"
+
     },
     "autoload": {
         "classmap": [
@@ -53,5 +57,11 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }

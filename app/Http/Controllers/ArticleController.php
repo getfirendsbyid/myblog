@@ -18,7 +18,7 @@ class ArticleController extends Controller
     public function index()
     {
 
-        $article = Articles::limit(8)->get();
+        $article = Articles::limit(6)->get();
 
         return view('web/welcome',compact('article'));
 
@@ -57,7 +57,7 @@ class ArticleController extends Controller
 
         $article = Articles::findOrFail($id);
 
-        return view('web/article/detail',compact('article'));
+        return view('web/article/show',compact('article'));
         
     }
 

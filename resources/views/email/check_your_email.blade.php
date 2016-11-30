@@ -1,8 +1,8 @@
-@extends('blade/home')
+@extends('layouts/home')
 
 @section('content')
 
-    <div class="container header-container">
+    <div class="container header-container" style="margin-top: 100px">
 
          <div class="row">
 

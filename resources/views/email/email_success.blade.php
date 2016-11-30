@@ -1,8 +1,8 @@
-@extends('blade/home')
+@extends('layouts/home')
 
 @section('content')
 
-<div class="container header-container" >
+<div class="container header-container" style="margin-top: 100px" >
 
      <div class="row">
 
@@ -14,7 +14,7 @@
 
                         <code> $this->MessagesToYou('跨过万水千山,终于等到你...');</code>
 
-                        <a href="/login" class="btn btn-success ">点击登录</a>
+                        <a href="/user/login" class="btn btn-success ">点击登录</a>
 
                 </div>
 

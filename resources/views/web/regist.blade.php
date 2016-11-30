@@ -1,5 +1,5 @@
 
-@extends('blade/home')
+@extends('layouts/home')
 
 @section('content')
 
@@ -13,6 +13,7 @@
 
 
                     @if($errors->any())
+
                         <ul class="list-group">
 
                             @foreach($errors->all() as $error)
@@ -22,6 +23,7 @@
                             @endforeach
 
                         </ul>
+
                     @endif
 
                         @if(Session::has('user_login_failed'))
@@ -33,7 +35,7 @@
 
 
 
-                <form   class="form-horizontal col-xs-12  col-md-12 "  action="/regist" method="post" role="form">
+                <form   class="form-horizontal col-xs-12  col-md-12 "  action="/user/regist" method="post" role="form">
 
                       {{ csrf_field() }}
 

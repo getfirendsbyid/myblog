@@ -1,4 +1,4 @@
-@extends('blade/blog')
+@extends('layouts/home')
 
 @section('content')
 <h1>Articles</h1>

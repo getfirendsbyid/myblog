@@ -4,13 +4,38 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
+
+    public  function __construct()
+    {
+
+        $this->middleware('auth',['only'=>['create','edit','update']]);
+
+    }
+
+    public function  updatepassword(){
+
+         return  view('web.user.updatepassword');
+
+     }
+
+     public function  collect(){
+
+         return  view('web.user.collect');
+
+     }
+
+     public  function  center()
+     {
+
+        return  view('web.user.center');
+
+     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -21,7 +46,7 @@ class UsersController extends Controller
    public  function email_success()
    {
 
-       return view('/email.email_success');
+       return view('email.email_success');
    }
 
     /**
@@ -44,12 +69,11 @@ class UsersController extends Controller
     public function quite()
     {
 
-        Auth::logout();
+        \Auth::logout();
 
         return redirect('/');
 
     }
-
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -81,6 +105,7 @@ class UsersController extends Controller
     public function  token($confirm_code)
     {
 
+
         $user = User::where('confirm_code',$confirm_code)->first();
 
         if (is_null($user))
@@ -88,7 +113,7 @@ class UsersController extends Controller
 
             Session::flash('user_regist_failed','邮箱验证失败');
 
-            return redirect('/regist');
+            return redirect('/user/regist');
 
         }else{
 
@@ -100,7 +125,7 @@ class UsersController extends Controller
 
             {
 
-                return redirect('/email_success');
+                return redirect('/user/email_success');
 
             }
 
@@ -133,7 +158,7 @@ class UsersController extends Controller
 
         Session::flash('user_login_failed','密码不正确或邮箱不正确');
 
-        return  redirect('/login')->withInput(['email'=>$request->get('email')]);
+        return  redirect('/user/login')->withInput(['email'=>$request->get('email')]);
 
     }
 
@@ -147,7 +172,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        echo 123;
     }
 
     /**
@@ -185,7 +210,7 @@ class UsersController extends Controller
 
         User::register($data);
 
-        return redirect('/check_your_email');
+        return redirect('/user/check_your_email');
 
     }
 

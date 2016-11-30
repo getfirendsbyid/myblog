@@ -10,36 +10,73 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
 Route::get('/', 'ArticleController@index');// 首页
 
-Route::resource('/article', 'ArticleController');// 首页
+/**
+ *  User控制器
+ *
+ */
+Route::group(['prefix'=>'user'],function(){
 
-Route::get('/discussion','DiscussionController@index'); //论坛首页
+    Route::get('login', 'UsersController@login');//登录页面
+    Route::post('login','UsersController@signin');//登录服务
+    Route::get('regist', 'UsersController@regist');//注册页面
+    Route::post('regist','UsersController@store');//注册服务
+    Route::get('center','UsersController@center');//个人中心
+    Route::get('updatepassword','UsersController@updatepassword');//修改密码
+    Route::get('collect','UsersController@collect'); //个人收藏
+    Route::get('quite','UsersController@quite');  //退出
+    Route::get('token/{token}','UsersController@token');  //验证token是否为真
+    Route::get('check_your_email','UsersController@check_your_email');  //查看邮箱是提示页面
+    Route::get('email_success','UsersController@email_success');  //查看邮箱是提示页面
+});
 
-Route::get('/quite','UsersController@quite'); //论坛
+/**
+ *  User 命名空间
+ */
 
-Route::get('/discussion/create','DiscussionController@create');  //发表帖子
+Route::group(['prefix'=>'user','middleware'=>'auth','namespace'=>'User'],function(){
 
-Route::get('/user/token/{token}','UsersController@token');  //发表帖子
+    Route::get('upload','AvatarController@upload'); //头像修改页面
+    Route::post('upload','AvatarController@uploadavatar'); //头像修改处理方法
 
-Route::get('/check_your_email','UsersController@check_your_email');  //查看邮箱是提示页面
+});
 
-Route::get('/email_success','UsersController@email_success');  //查看邮箱是提示页面
+/**
+ *    Article 属性
+ *
+ */
+Route::group(['middleware'=>'auth','prefix'=>'article'],function(){
 
-Route::get('/discussion/create','DiscussionController@create');  //查看邮箱是提示页面
+    Route::get('{id}','articleController@show'); //文章列表
 
-Route::get('/login','UsersController@login');
-
-Route::post('/login','UsersController@signin');
-
-Route::get('/regist','UsersController@regist');
-
-Route::post('/regist','UsersController@store');
-
-Route::get('/article','ArticleController@index');
+});
 
 
-//Auth::routes();
+/**
+ *   论坛控制器
+ */
 
-Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware'=>'auth','prefix'=>'discussion'],function (){
+
+    Route::get('{id}','DiscussionController@show');  //展示某个帖子内容
+    Route::post('create','DiscussionController@store');  //帖子创建页面
+    Route::get('','DiscussionController@index'); //论坛首页
+    Route::get('create','DiscussionController@create');  //发表帖子
+
+
+});
+
+
+
+Route::group(['middleware'=>'auth','namespace' => 'Admin'],function (){
+
+    Route::get('/login','loginController@login');
+
+    Route::get('/regist','loginController@login');
+
+});
+
+
+

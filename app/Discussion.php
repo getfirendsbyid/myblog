@@ -42,4 +42,14 @@ class Discussion extends Model
         return $this->belongsTo(User::class,'user_id'); //拿到一个用户的所有文章
 
     }
+
+
+    public static function creatediscussion(array $discussion)
+    {
+
+        $res = static::create($discussion);
+
+        return $res;
+
+    }
 }

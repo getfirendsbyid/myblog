@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts/home')
 @section('conetent')
     <form action="">
 

@@ -177,8 +177,14 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /**
+         * 自己的服务
+         */
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,  //sentry 异常捕捉服务
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,  //phpstom 智能ide提示
+        Intervention\Image\ImageServiceProvider::class, //图片上传服务
+        YuanChao\Editor\EndaEditorServiceProvider::class
     ],
 
     /*
@@ -229,11 +235,15 @@ return [
 
 
 
+
         /**
          * 自己的别名服务
          */
 
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,//senty 异常服务
+        'Image' => Intervention\Image\Facades\Image::class,  //图片别名上传服务
+        'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class
+
 
     ],
 

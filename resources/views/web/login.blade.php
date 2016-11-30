@@ -1,8 +1,11 @@
 
-@extends('blade/home')
+@extends('layouts/home')
+
+@section('title', '登录')
+@section('description','余威的个人博客,余威')
+@section('keywords','关键词')
 
 @section('content')
-
 
     <div class="jumbotron">
 
@@ -31,7 +34,7 @@
                     @endif
 
 
-                <form   class="form-horizontal col-xs-12  col-md-12"  action="/login" method="post" role="form">
+                <form   class="form-horizontal col-xs-12  col-md-12"  action="/user/login" method="post" role="form">
 
                     {{ csrf_field() }}
 
