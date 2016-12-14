@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.24 on 2016-11-24.
+ * Generated for Laravel 5.3.26 on 2016-12-08.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -5523,6 +5523,18 @@ namespace {
          */
         public static function append($path, $data){
             return \Illuminate\Filesystem\Filesystem::append($path, $data);
+        }
+        
+        /**
+         * Get or set UNIX mode of a file or directory.
+         *
+         * @param string $path
+         * @param int $mode
+         * @return mixed 
+         * @static 
+         */
+        public static function chmod($path, $mode = null){
+            return \Illuminate\Filesystem\Filesystem::chmod($path, $mode);
         }
         
         /**
@@ -12407,6 +12419,33 @@ namespace {
          */
         public static function cache($callback, $lifetime = null, $returnObj = false){
             return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
+        }
+        
+    }
+
+
+    class EndaEditor extends \YuanChao\Editor\Facade\EndaEditorFacade{
+        
+        /**
+         * EndaEditor Upload ImgFile
+         *
+         * @param string $path
+         * @return array 
+         * @static 
+         */
+        public static function uploadImgFile($path){
+            return \YuanChao\Editor\EndaEditor::uploadImgFile($path);
+        }
+        
+        /**
+         * 转换 mark 文本
+         *
+         * @param $markdownText
+         * @return string 
+         * @static 
+         */
+        public static function MarkDecode($markdownText){
+            return \YuanChao\Editor\EndaEditor::MarkDecode($markdownText);
         }
         
     }

@@ -1,40 +1,78 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="{{asset('/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('/bower_components/bootstrap/dist/css/bootstrap-theme.min.css')}}">
-    <script src="{{asset('/bower_components/jquery/dist/jquery.js')}}"></script>
-    <script src="{{asset('/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <title>一栖</title>
 
-    <meta name="description" content="Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。目前，Bootstrap最新版本为3.0 。Bootstrap中文网致力于为广大国内开发者提供详尽的中文文档、代码实例等，助力开发者掌握并使用这一框架。">
-    <meta name="keywords" content="Bootstrap,CSS,CSS框架,CSS framework,javascript,bootcss,bootstrap开发,bootstrap代码,bootstrap入门">
-    {{--<style>--}}
-    {{--.navbar{--}}
-    {{--margin-bottom:0px;--}}
-    {{--}--}}
-    {{--</style>--}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台登录</title>
+    <link href="{{asset('/admin/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+    <link href="{{asset('/admin/css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('/admin/css/style.css')}}" rel="stylesheet">
+
 </head>
 
-<body>
+<body class="gray-bg">
 
-<div class="container">
+<div class="middle-box text-center loginscreen animated fadeInDown">
 
-    <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-        <input type="password" class="fo,rm-control" placeholder="Password" required="">
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+    @if($errors->any())
+        <ul class="list-group">
+
+            @foreach($errors->all() as $error)
+
+                <li class="list-group-item list-group-item-danger">{{$error}}</li>
+
+            @endforeach
+
+        </ul>
+    @endif
+
+    @if(Session::has('user_login_failed'))
+        <ul class="list-group">
+
+            <li class="list-group-item list-group-item-danger">{{Session::get('user_login_failed')}}</li>
+
+            @endif
+    <div>
+        <div>
+            {{--<h1 class="logo-name">GO</h1>--}}
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+        <h3>Welcome To Your Blog Program</h3>
+        <p>
+            Seek something better in life
+        </p>
 
+        <p>
+            Record something in life
+        </p>
+
+        <form class="m-t" role="form" action="{{url('admin/login')}}" method="post">
+                 {{csrf_field()}}
+            <div class="form-group">
+                <input type="email" name="email" class="form-control" placeholder="Username" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password" required="">
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+            {{--<a href="#"><small>Forgot password?</small></a>--}}
+
+            {{--<p class="text-muted text-center"><small>Do not have an account?</small></p>--}}
+
+            {{--<a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>--}}
+
+        </form>
+
+        <p class="m-t"><small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+    </div>
 </div>
+
+<!-- Mainly scripts -->
+<script src="{{asset('/admin/js/jquery-2.1.1.js')}}"></script>
+<script src="{{asset('/admin/js/bootstrap.min.js')}}"></script>
+
 </body>
 
 </html>

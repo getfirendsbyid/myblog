@@ -12,8 +12,8 @@
         "predis/predis": "^1.1",
         "guzzlehttp/guzzle": "^6.2",
         "intervention/image": "^2.3",
-        "yuanchao/laravel-5-markdown-editor": "dev-master"
-
+        "yuanchao/laravel-5-markdown-editor": "dev-master",
+        "bizly/roles": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

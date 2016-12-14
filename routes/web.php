@@ -65,18 +65,28 @@ Route::group(['middleware'=>'auth','prefix'=>'discussion'],function (){
     Route::get('','DiscussionController@index'); //论坛首页
     Route::get('create','DiscussionController@create');  //发表帖子
 
-
 });
 
 
+/**
+ * 项目
+ */
 
-Route::group(['middleware'=>'auth','namespace' => 'Admin'],function (){
+Route::resource('admin/login','Admin\LoginController');
+Route::get('admin/logout','Admin\LoginController@logout');
 
-    Route::get('/login','loginController@login');
+/**
+ * 后台功能,需验证管理员权限
+ */
+Route::group(['prefix' => 'admin','middleware'=>'admin','namespace'=>'Admin'],function (){
 
-    Route::get('/regist','loginController@login');
+//    Route::resource('login','LoginController');
+    Route::resource('index','IndexController');
+    Route::get('permission','PermissionController@index');
+    Route::get('permission/createroles','PermissionController@createroles');
 
 });
+
 
 
 

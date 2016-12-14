@@ -88,7 +88,6 @@ class User extends Authenticatable
     public static function register(array  $attributes) //特性
     {
 
-
         $user = static::create($attributes);
 
         event(new UserRegistered($user));  //触发事件, 发送带有token短信
@@ -133,22 +132,40 @@ class User extends Authenticatable
         
     }
 
+
+    public function permissions()
+    {
+
+        return $this->belongsToMany(Permissions::class,'permission_user','id','user_id');
+        
+    }
+
+
     public function hasRole($role)
     {
 
-        dd($this->roles->contains('name',$role));
-
         if (is_string($role)){
 
-            dd($this->roles->contains('name',$role));
-
-//           return $this->roles->contains('name',$role);
+           return $this->roles->contains('slug',$role);//查看集合中是否有该字段中是否有这个角色
 
         }
 
-//        return !! $role->intersect($this->roles)->count();
+        return !! $role->intersect($this->roles)->count();
 
     }
+
+    /**
+     * @return bool
+     * 验证是否是超级管理员
+     */
+    public function isadmin()
+    {
+
+        return $this->hasRole('admin');
+
+    }
+
+
 
 
 

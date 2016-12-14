@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\UserLoginRequest;
+use App\Permission_user;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
@@ -17,18 +19,38 @@ class LoginController extends Controller
     public function index()
     {
 
-        echo 123;
+        if (\Auth::check()){
+
+             return redirect('admin/index');
+
+        }
+
+        return view('admin.login');
 
     }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+    public function logout()
     {
-        //
+
+        if (\Auth::check()){
+
+            \Auth::logout();
+
+            return redirect('admin/login');
+
+        }else{
+
+            return redirect('admin/login');
+        }
+
+
     }
 
     /**
@@ -37,9 +59,22 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserLoginRequest $request)
     {
-        //
+
+        if (\Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+        {
+
+           return redirect('admin/index');
+
+        }else{
+
+           return redirect('admin/login');
+
+        }
+
+
+
     }
 
     /**

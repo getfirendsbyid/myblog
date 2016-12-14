@@ -68,7 +68,5 @@ $factory->define(App\Discussion::class, function (Faker\Generator $faker) {
         'last_user_id' => $faker->randomElement($userid),
     ];
 
-
-
 });
 

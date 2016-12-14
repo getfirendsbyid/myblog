@@ -162,7 +162,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
+        Illuminate\Auth\AuthServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -178,13 +179,16 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Illuminate\Foundation\Providers\ArtisanServiceProvider::class,//权限管理服务注册
+        Illuminate\Auth\AuthServiceProvider::class,//权限管理服务注册
         /**
          * 自己的服务
          */
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,  //sentry 异常捕捉服务
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,  //phpstom 智能ide提示
         Intervention\Image\ImageServiceProvider::class, //图片上传服务
-        YuanChao\Editor\EndaEditorServiceProvider::class
+        YuanChao\Editor\EndaEditorServiceProvider::class,//markdown文本编辑器服务
+        Bican\Roles\RolesServiceProvider::class,// 权限管理包
     ],
 
     /*
@@ -232,8 +236,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-
 
 
         /**

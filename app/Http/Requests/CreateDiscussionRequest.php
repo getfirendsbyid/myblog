@@ -28,4 +28,5 @@ class CreateDiscussionRequest extends FormRequest
             'body'=>'required',
         ];
     }
+
 }

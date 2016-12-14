@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
+            $table->string('intro');
             $table->text('article_img_url');
             $table->timestamp('published_at');
             $table->timestamps();
@@ -28,6 +29,7 @@ class CreateArticlesTable extends Migration
      *
      * @return void
      */
+
     public function down()
     {
         Schema::dropIfExists('articles');

@@ -24,4 +24,11 @@ class Role extends Model
         return $this->permissions()->save($permissions);
 
     }
+
+    public function createroles(array  $roles)
+    {
+        return Static::create($roles);
+    }
 }
+
+
