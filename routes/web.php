@@ -12,14 +12,10 @@
 */
 
 Route::get('', ['as' => 'home',function () {
-
-   phpinfo();
-
-
 //
-//    $article = \App\Articles::paginate(9);
-//
-//    return view('web.welcome',compact('article'));
+    $article = \App\Articles::paginate(9);
+
+    return view('web.welcome',compact('article'));
 
 }
 ]);// 首页
