@@ -1,6 +1,6 @@
 @extends('layouts/home1')
 
 @section('content')
-    {!! Breadcrumbs::render('')!!}
+    {!! Breadcrumbs::render('article')!!}
 @stop
 

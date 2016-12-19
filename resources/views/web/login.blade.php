@@ -1,20 +1,11 @@
 
-@extends('layouts/home')
-
-@section('title', '登录')
-@section('description','余威的个人博客,余威')
-@section('keywords','关键词')
+@extends('layouts/home1')
 
 @section('content')
 
-    <div class="jumbotron">
-
-        <div class="container" >
-
-            <div id="form">
-
 
                 @if($errors->any())
+
                     <ul class="list-group">
 
                         @foreach($errors->all() as $error)
@@ -34,38 +25,40 @@
                     @endif
 
 
-                <form   class="form-horizontal col-xs-12  col-md-12"  action="/user/login" method="post" role="form">
+                            <div class="middle-box text-center loginscreen animated fadeInDown">
+                                <div>
+                                    <div>
 
-                    {{ csrf_field() }}
+                                        <h1 class="logo-name"></h1>
 
-                    <div class="form-group">
+                                    </div>
 
-                        <label for="inputEmail3" >邮箱</label>
+                                    <h3>Welcome To Your Blog Program</h3>
 
-                         <input type="email" name="email" value="{{ old('email')}}" class="form-control " id="inputEmail3" placeholder="邮箱">
+                                    <p>
+                                        Record something in life
+                                    </p>
 
-                    </div>
+                                    <p>
+                                        Seek something better in life
+                                    </p>
+                                    <form class="m-t" role="form" action="{{url('user/login')}}" method="post">
+                                        {{ csrf_field() }}
+                                        <div class="form-group">
+                                            <input type="email" class="form-control"  name="email" value="{{ old('email')}}" placeholder="Username" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="password" placeholder="Password" required="">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
 
-                    <div class="form-group">
-
-                        <label for="inputPassword3"  >密码</label>
-                        <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="密码">
-
-                    </div>
-
-                    <div class="form-group">
-                        <div class="">
-                            <button type="submit" class="form-control btn btn-default">登录</button>
-                        </div>
-                    </div>
-
-                </form>
+                                        <a href="#"><small>忘记密码?</small></a>
+                                        <p class="text-muted text-center"><small>还没有账号?</small></p>
+                                        <a class="btn btn-sm btn-white btn-block" href="register.html">创建账号</a>
+                                    </form>
+                                   </div>
+                            </div>
 
 
-                <div style="clear: both"></div>
-            </div>
 
-        </div>
-    </div>
-    </div>
 @stop

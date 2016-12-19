@@ -10,24 +10,24 @@
     <div class="containers header-container">
         <div class="col-md-12">
         <form method="post" action="/discussion/create">
-            @if($errors->any())
-                <ul class="list-group">
+            {{--@if($errors->any())--}}
+                {{--<ul class="list-group">--}}
 
-                    @foreach($errors->all() as $error)
+                    {{--@foreach($errors->all() as $error)--}}
 
-                        <li class="list-group-item list-group-item-danger">{{$error}}</li>
+                        {{--<li class="list-group-item list-group-item-danger">{{$error}}</li>--}}
 
-                    @endforeach
+                    {{--@endforeach--}}
 
-                </ul>
-            @endif
+                {{--</ul>--}}
+            {{--@endif--}}
 
-            @if(Session::has('user_login_failed'))
-                <ul class="list-group">
+            {{--@if(Session::has('user_login_failed'))--}}
+                {{--<ul class="list-group">--}}
 
-                    <li class="list-group-item list-group-item-danger">{{Session::get('user_login_failed')}}</li>
+                    {{--<li class="list-group-item list-group-item-danger">{{Session::get('user_login_failed')}}</li>--}}
 
-                    @endif
+                    {{--@endif--}}
             {{csrf_field()}}
             <div class="col-md-10 col-sm-12 col-md-offset-1">
                 <div class="form-group">

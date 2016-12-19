@@ -15,7 +15,7 @@ class DiscussionController extends Controller
     function __construct()
     {
 
-        $this->middleware('auth',['only'=>['create','store','edit','update']]); //必须登录之后才能访问这些方法,否者跳回user/login
+//        $this->middleware('auth',['only'=>['create','store','edit','update']]); //必须登录之后才能访问这些方法,否者跳回user/login
 
     }
 
@@ -24,6 +24,7 @@ class DiscussionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
 
@@ -51,6 +52,7 @@ class DiscussionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Requests\CreateDiscussionRequest $request)
     {
 
@@ -74,7 +76,6 @@ class DiscussionController extends Controller
         $discussion = Discussion::findOrFail($id);
 
 //        $this->authorize('show-post',$discussion);
-
 
         return view('web.discussion.show',compact('discussion'));
 

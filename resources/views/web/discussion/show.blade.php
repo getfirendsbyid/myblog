@@ -26,11 +26,9 @@
                      </div>
                      <a class="media-left" href="#" style="width: 100px;">
 
-@can('update_discussion')
-
                          <a href="/discussion/update" class="btn btn-success  btn-block">修改问题</a>
 
-@endcan
+
                      </a>
 
                  </div>

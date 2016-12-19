@@ -181,6 +181,7 @@ return [
 
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,//权限管理服务注册
         Illuminate\Auth\AuthServiceProvider::class,//权限管理服务注册
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,//面包屑服务注册
         /**
          * 自己的服务
          */
@@ -189,6 +190,7 @@ return [
         Intervention\Image\ImageServiceProvider::class, //图片上传服务
         YuanChao\Editor\EndaEditorServiceProvider::class,//markdown文本编辑器服务
         Bican\Roles\RolesServiceProvider::class,// 权限管理包
+
     ],
 
     /*
@@ -244,7 +246,8 @@ return [
 
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,//senty 异常服务
         'Image' => Intervention\Image\Facades\Image::class,  //图片别名上传服务
-        'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class
+        'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,//markdown编辑器
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,//面包屑别名
 
 
     ],

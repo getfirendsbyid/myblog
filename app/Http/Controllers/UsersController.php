@@ -66,7 +66,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * 登录退出
      */
-    public function quite()
+    public function logout()
     {
 
         \Auth::logout();
@@ -82,6 +82,12 @@ class UsersController extends Controller
     public function login()
     {
 
+        if (\Auth::check()){
+
+            return redirect('');
+
+        }
+
         return view('web/login');
 
     }
@@ -93,6 +99,11 @@ class UsersController extends Controller
      */
     public function regist()
     {
+        if (\Auth::check()){
+
+            return redirect('');
+
+        }
 
         return view('web/regist');
 

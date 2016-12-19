@@ -13,7 +13,8 @@
         "guzzlehttp/guzzle": "^6.2",
         "intervention/image": "^2.3",
         "yuanchao/laravel-5-markdown-editor": "dev-master",
-        "bizly/roles": "^2.1"
+        "bizly/roles": "^2.1",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

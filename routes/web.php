@@ -10,7 +10,37 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('/', 'ArticleController@index');// 首页
+
+Route::get('', ['as' => 'home',function () {
+
+   phpinfo();
+
+
+//
+//    $article = \App\Articles::paginate(9);
+//
+//    return view('web.welcome',compact('article'));
+
+}
+]);// 首页
+
+
+Route::get('blog', ['as' => 'blog', function () {
+
+        return view('home1');
+
+    }
+]);
+
+Route::get('test', ['as' => 'article', function () {
+
+        return view('home2');
+
+    }
+]);
+
+
+
 
 /**
  *  User控制器
@@ -25,10 +55,11 @@ Route::group(['prefix'=>'user'],function(){
     Route::get('center','UsersController@center');//个人中心
     Route::get('updatepassword','UsersController@updatepassword');//修改密码
     Route::get('collect','UsersController@collect'); //个人收藏
-    Route::get('quite','UsersController@quite');  //退出
+    Route::get('logout','UsersController@logout');  //退出
     Route::get('token/{token}','UsersController@token');  //验证token是否为真
     Route::get('check_your_email','UsersController@check_your_email');  //查看邮箱是提示页面
     Route::get('email_success','UsersController@email_success');  //查看邮箱是提示页面
+
 });
 
 /**
@@ -74,6 +105,8 @@ Route::group(['middleware'=>'auth','prefix'=>'discussion'],function (){
 
 Route::resource('admin/login','Admin\LoginController');
 Route::get('admin/logout','Admin\LoginController@logout');
+
+Route::get('discussion/','DiscussionController@create');
 
 /**
  * 后台功能,需验证管理员权限

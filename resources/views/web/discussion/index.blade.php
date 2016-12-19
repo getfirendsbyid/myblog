@@ -23,7 +23,7 @@
 
                          <div class="bs-example">
 
-                              @foreach($discussion->chunk(8) as $row)
+                              @foreach($discussion->chunk(9) as $row)
 
                                  @foreach($row as $discussions)
 
